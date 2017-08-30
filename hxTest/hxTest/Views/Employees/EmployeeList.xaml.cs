@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Autofac;
-using hxTest.Business.Employees.Searchers;
 using hxTest.Utilities;
 using hxTest.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace hxTest.Views
+
+namespace hxTest.Views.Employees
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EmployeeList : ContentPage
@@ -21,13 +17,12 @@ namespace hxTest.Views
 
             var viewModel = AppContainer.Container.Resolve<ListEmployeeViewModel>();
             BindingContext = viewModel;
-
-
+            EmployeeListView.ItemSelected += EmployeeListView_ItemSelected;
         }
 
-        private void Toast(object sender, EventArgs e)
+        private void EmployeeListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            DisplayAlert("Hola","como estas ?","Ok");
+            Navigation.PushAsync(new DetailEmployeePage(), true);
         }
     }
 }

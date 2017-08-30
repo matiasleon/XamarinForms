@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using hxTest.Utilities;
 using hxTest.Views;
+using hxTest.Views.Employees;
 using Xamarin.Forms;
 
 namespace hxTest
