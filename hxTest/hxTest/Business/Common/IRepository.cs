@@ -2,12 +2,12 @@
 using System.Threading.Tasks;
 using hxTest.Business.Employees;
 
-namespace hxTest.IServices.Employees
+namespace hxTest.Business.Common
 {
-    public interface IEmployeeService
+    public interface IRepository
     {
         Task<IList<Employee>> GetAll();
 
-        Task Create(string name, string office, string username);
+        Task<int> SaveAsync(Employee employee);
     }
 }

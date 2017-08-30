@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using hxTest.Business.Employees;
+using hxTest.Business.Employees.Core;
 using hxTest.Business.Employees.Searchers;
 using hxTest.IServices.Employees;
 
@@ -13,14 +11,22 @@ namespace hxTest.Services.Employees
     {
         private readonly EmployeeSearcher employeeSearcher;
 
-        public EmployeeService(EmployeeSearcher employeeSearcher)
+        private readonly EmployeeGenerator generator;
+
+        public EmployeeService(EmployeeSearcher employeeSearcher, EmployeeGenerator generator)
         {
             this.employeeSearcher = employeeSearcher;
+            this.generator = generator;
         }
 
-        public IList<Employee> GetAll()
+        public async Task<IList<Employee>> GetAll()
         {
-            return this.employeeSearcher.GetAll();
+            return await this.employeeSearcher.GetAll();
+        }
+
+        public async Task Create(string name, string office, string username)
+        {
+            await this.generator.Generate(name, office, username);
         }
     }
 }

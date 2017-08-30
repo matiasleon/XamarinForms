@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using hxTest.Utilities;
+using hxTest.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Microsoft.Practices.Unity;
 
 namespace hxTest.Views.Employees
 {
@@ -15,6 +13,8 @@ namespace hxTest.Views.Employees
         public NewEmployeePage()
         {
             InitializeComponent();
+            var vm = AppContainer.Container.Resolve(typeof(NewEmployeePageViewModel));
+            BindingContext = vm;
         }
     }
 }

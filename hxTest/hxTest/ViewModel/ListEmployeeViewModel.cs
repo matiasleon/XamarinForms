@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using hxTest.Business.Employees;
 using hxTest.IServices.Employees;
 using Xamarin.Forms;
@@ -13,25 +14,17 @@ namespace hxTest.ViewModel
     {
         private readonly IEmployeeService employeeService;
 
-        private ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
+        public IList<Employee> Employees { get; set; }
 
         public ListEmployeeViewModel(IEmployeeService employeeService)
-        {
+        {           
             this.employeeService = employeeService;
+            this.GetEmployees();
         }
 
-        public ObservableCollection<Employee> Employees
+        public async Task GetEmployees()
         {
-            get
-            {
-                var employeesList = this.employeeService.GetAll();
-                foreach (var employee in employeesList)
-                {
-                    this.employees.Add(employee);
-                }
-
-                return employees;
-            }
-        }
+            this.Employees = await this.employeeService.GetAll();
+        } 
     }
 }

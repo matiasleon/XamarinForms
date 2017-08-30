@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="hxTest.Views.Employees.NewEmployeePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin Forms!" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="hxTest.Views.Employees.NewEmployeePage"
+             Title="Nuevo">
+    <StackLayout Orientation="Vertical" Margin="10">
+        <Entry Placeholder="Escribir nombre" Text="{Binding Name}"></Entry>
+        <Entry Placeholder="Escribir oficina" Text="{Binding Office}"></Entry>
+        <Entry Placeholder="Escribir username" Text="{Binding Username}"></Entry>
+        <Button Text="Crear" Command="{Binding SaveCommand}"></Button>
+    </StackLayout>
 </ContentPage>

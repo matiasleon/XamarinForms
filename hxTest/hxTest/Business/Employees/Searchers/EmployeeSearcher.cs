@@ -3,44 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using hxTest.Business.Common;
 
 namespace hxTest.Business.Employees.Searchers
 {
     public class EmployeeSearcher
     {
-        public EmployeeSearcher()
+        private readonly IRepository repository;
+
+        public EmployeeSearcher(IRepository repository)
         {
-            
+            this.repository = repository;
         }
 
-        public IList<Employee> GetAll()
+        public async Task<IList<Employee>> GetAll()
         {
-            var employees = new List<Employee>(); 
-            employees.Add(new Employee(){Name = "Matias",Username = "unUsername"});
-            employees.Add(new Employee(){Name = "Dani",Username = "unUsername"});
-            employees.Add(new Employee() { Name = "Carlos", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Dani", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Carlos", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-            employees.Add(new Employee() { Name = "Messi", Username = "unUsername" });
-
-            return employees;
+            return await this.repository.GetAll();
         }
     }
 }

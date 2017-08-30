@@ -1,7 +1,7 @@
 ﻿using System;
-using Autofac;
 using hxTest.Utilities;
 using hxTest.ViewModel;
+using Microsoft.Practices.Unity;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,7 +15,7 @@ namespace hxTest.Views.Employees
         {
             InitializeComponent();
 
-            var viewModel = AppContainer.Container.Resolve<ListEmployeeViewModel>();
+            var viewModel = AppContainer.Container.Resolve(typeof(ListEmployeeViewModel));
             BindingContext = viewModel;
             EmployeeListView.ItemSelected += EmployeeListView_ItemSelected;
         }
@@ -23,6 +23,11 @@ namespace hxTest.Views.Employees
         private void EmployeeListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             Navigation.PushAsync(new DetailEmployeePage(), true);
+        }
+
+        private void MenuItem_OnClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new NewEmployeePage());
         }
     }
 }

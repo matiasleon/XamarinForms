@@ -21,7 +21,7 @@ namespace hxTest.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App(new AppSetup()));
+            LoadApplication(new App());
         }
     }
 }

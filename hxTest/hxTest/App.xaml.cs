@@ -11,10 +11,11 @@ namespace hxTest
 {
     public partial class App : Application
     {
-        public App(AppSetup setup)
+        public App()
         {
 
-            AppContainer.Container = setup.CreateContainer();
+            AppContainer.Init();
+            AppContainer.RegisterDependencies();
             MainPage = new NavigationPage(new EmployeeList());
         }
 
