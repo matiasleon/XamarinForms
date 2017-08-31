@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="hxTest.Views.Employees.EmployeeList">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text ="+"
+        <ToolbarItem Text ="Agregar nuevo"
                      Clicked="MenuItem_OnClicked"
                      Priority="0" Order="Primary" />
     </ContentPage.ToolbarItems>
-    <ListView x:Name="EmployeeListView" ItemsSource="{Binding Employees}" HorizontalOptions="End">
+    <ListView x:Name="EmployeeListView" ItemsSource="{Binding EmployeesSource}" HorizontalOptions="End">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <TextCell Text="{Binding Name}" />

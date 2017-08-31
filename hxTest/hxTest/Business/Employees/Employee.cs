@@ -12,6 +12,11 @@ namespace hxTest.Business.Employees
             this.Username = username;
         }
 
+        public Employee()
+        {
+            
+        }
+
         public string Name { get; set; }
 
         public string Username { get; set; }

@@ -1,4 +1,5 @@
 ﻿using System;
+using hxTest.Business.Employees;
 using hxTest.Utilities;
 using hxTest.ViewModel;
 using Microsoft.Practices.Unity;
@@ -22,7 +23,9 @@ namespace hxTest.Views.Employees
 
         private void EmployeeListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Navigation.PushAsync(new DetailEmployeePage(), true);
+            var item = (Employee)e.SelectedItem;
+            var detailPage = new DetailEmployeePage(item);
+            Navigation.PushAsync(detailPage, true);
         }
 
         private void MenuItem_OnClicked(object sender, EventArgs e)

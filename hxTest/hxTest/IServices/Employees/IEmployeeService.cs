@@ -8,6 +8,6 @@ namespace hxTest.IServices.Employees
     {
         Task<IList<Employee>> GetAll();
 
-        Task Create(string name, string office, string username);
+        Task<Employee> Create(string name, string office, string username);
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using hxTest.Business.Employees;
+using hxTest.Common;
 using hxTest.IServices.Employees;
 using Xamarin.Forms;
 
@@ -14,17 +15,31 @@ namespace hxTest.ViewModel
     {
         private readonly IEmployeeService employeeService;
 
-        public IList<Employee> Employees { get; set; }
+        public ObservableCollection<Employee> EmployeesSource { get; set; }
 
         public ListEmployeeViewModel(IEmployeeService employeeService)
         {           
             this.employeeService = employeeService;
-            this.GetEmployees();
+            EmployeesSource = new ObservableCollection<Employee>();
+            InitEmployees();
+            SubscribeNewEmployeeEvent();
         }
 
-        public async Task GetEmployees()
+        public void InitEmployees()
         {
-            this.Employees = await this.employeeService.GetAll();
-        } 
+            var employeesResults = Task.Run(async () => await this.employeeService.GetAll()).Result;
+            foreach (var employee in employeesResults)
+            {
+                EmployeesSource.Add(employee);
+            }
+        }
+
+        private void SubscribeNewEmployeeEvent()
+        {
+            MessagingCenter.Subscribe<NewEmployeePageViewModel,Employee>(this, MessengerKeys.EmployeeCreated, (sender, newEmployee) =>
+            {
+                EmployeesSource.Add(newEmployee);                
+            });
+        }
     }
 }

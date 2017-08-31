@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using hxTest.Common;
 using hxTest.IServices.Employees;
 using Xamarin.Forms;
 
@@ -29,7 +30,8 @@ namespace hxTest.ViewModel
 
         private async void Save()
         {
-            await this.employeeService.Create(this.Name, this.Office, this.Username);
+            var employee = await employeeService.Create(this.Name, this.Office, this.Username);
+            MessagingCenter.Send(this, MessengerKeys.EmployeeCreated, employee );
         }
     }
 }

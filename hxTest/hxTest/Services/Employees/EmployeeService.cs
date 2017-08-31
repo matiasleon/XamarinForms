@@ -24,9 +24,9 @@ namespace hxTest.Services.Employees
             return await this.employeeSearcher.GetAll();
         }
 
-        public async Task Create(string name, string office, string username)
+        public async Task<Employee> Create(string name, string office, string username)
         {
-            await this.generator.Generate(name, office, username);
+            return await this.generator.Generate(name, office, username);
         }
     }
 }
